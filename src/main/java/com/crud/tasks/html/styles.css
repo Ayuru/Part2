@@ -1,0 +1,11 @@
+body {
+   background-color: cyan;
+   color: #8A2BE2
+}
+
+h1 {
+   color: #DC143C;
+   font-size: 102px;
+   font-family: "Lucida Handwriting", cursive;
+   text-align: center;
+}
