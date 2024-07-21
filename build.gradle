@@ -16,6 +16,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-activemq'
+	implementation 'org.apache.activemq:activemq-spring:5.16.3'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.projectlombok:lombok:1.18.28'
 	compileOnly 'org.projectlombok:lombok'
@@ -27,6 +29,19 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	testImplementation 'com.google.code.gson:gson'
+	implementation 'net.bytebuddy:byte-buddy:1.14.15'
+	jar {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+		from {
+			configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+		}
+		manifest {
+			attributes "Premain-Class": 'com.extra.chapter2.agent.User',
+					"Can-Redefine-Classes" : "true",
+					"Can-Retransform-Classes" : "true"
+
+		}
+	}
 
 }
 
